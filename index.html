@@ -4,100 +4,129 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>缠习录 Chanxilu · 缠中说禅学习</title>
-<link rel="icon" href="assets/favicon-32.png"/>
+<meta name="description" content="缠习录 — 缠中说禅学习 App。缠师原文 · 精心排版 · 可读可听。原文永久免费,会员解锁听书、离线与跨端同步。"/>
+<link rel="icon" href="assets/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"/>
 <link rel="apple-touch-icon" href="assets/favicon-180.png"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700&family=Source+Code+Pro:wght@400;500&display=swap"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700;900&family=Source+Code+Pro:wght@400;500&family=Zhi+Mang+Xing&family=Liu+Jian+Mao+Cao&display=swap"/>
 <style>
   :root{
-    --bg:#121212; --bg2:#171717; --bg3:#1c1c1c;
-    --b1:#242424; --b2:#2e2e2e; --b3:#363636;
-    --fg:#fafafa; --fg2:#b4b4b4; --fg3:#898989;
-    --gold:#C8923B; --gold-lt:#E3B05A; --gold-bd:rgba(200,146,59,.3);
+    --paper:#f2ebdc; --paper2:#ece3cf; --paper3:#e4d8bf;
+    --ink:#33291c; --ink2:#5d4e39; --ink3:#8a795e;
+    --line:rgba(74,54,36,.16); --line2:rgba(74,54,36,.26);
+    --gold:#a97c22; --gold-dk:#8a6318; --gold-bd:rgba(169,124,34,.38);
     --sans:"Inter","PingFang SC","Noto Sans SC",system-ui,sans-serif;
     --serif:"Noto Serif SC","Songti SC",serif;
     --mono:"Source Code Pro",ui-monospace,Menlo,monospace;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;}
-  a{color:inherit;text-decoration:none;}
-  .mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:1.2px;font-size:12px;color:var(--fg3);}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  body{
+    background:
+      radial-gradient(1200px 700px at 50% -160px, rgba(255,252,244,.75), transparent 62%),
+      radial-gradient(900px 900px at 108% 88%, rgba(196,175,136,.28), transparent 60%),
+      radial-gradient(1000px 800px at -10% 100%, rgba(196,175,136,.22), transparent 58%),
+      var(--paper);
+    color:var(--ink);font-family:var(--sans);font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;
+  }
+  a{color:var(--gold-dk);text-decoration:none;}
+  a:hover{color:var(--gold);}
+  .mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:1.2px;font-size:12px;color:var(--ink3);}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
 
   /* nav */
-  nav{position:sticky;top:0;z-index:50;background:rgba(18,18,18,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--b1);}
-  .nav-in{height:60px;display:flex;align-items:center;gap:12px;}
-  nav .wrap{max-width:1280px;}
+  nav{position:sticky;top:0;z-index:50;background:rgba(242,235,220,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  .nav-in{height:62px;display:flex;align-items:center;gap:12px;}
+  nav .wrap{max-width:1440px;}
   .brand{display:flex;align-items:center;gap:11px;}
-  .brand .logo{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#2c2419,#0e0b07);border:1px solid var(--gold-bd);display:grid;place-items:center;overflow:hidden;flex:none;}
-  .brand .logo img{width:80%;height:80%;object-fit:contain;}
-  .brand .nm{font-family:var(--serif);font-weight:700;font-size:18px;letter-spacing:1.5px;}
-  .brand .en{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;color:var(--fg3);text-transform:uppercase;}
+  .brand>span{display:flex;align-items:center;}
+  .brand .logo{width:38px;height:38px;display:grid;place-items:center;flex:none;}
+  .brand .logo img{width:100%;height:100%;object-fit:contain;}
+  .brand .nm{font-family:"Zhi Mang Xing",var(--serif);font-weight:400;font-size:30px;letter-spacing:2.5px;color:var(--ink);line-height:1;}
+  .brand .en{font-family:"Zhi Mang Xing",var(--serif);font-size:13px;letter-spacing:2.5px;color:var(--ink3);text-transform:uppercase;}
   .nav-cta{margin-left:auto;display:flex;align-items:center;gap:18px;}
-  .nav-link{font-size:14px;font-weight:500;color:var(--fg2);transition:color .15s;}
-  .nav-link:hover{color:var(--fg);}
+  .nav-link{font-size:14px;font-weight:500;color:var(--ink2);transition:color .15s;}
+  .nav-link:hover{color:var(--ink);}
   .pill{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 22px;border-radius:9999px;font-size:14px;font-weight:500;cursor:pointer;transition:background .16s,border-color .16s,transform .06s;}
   .pill:active{transform:scale(.97);}
-  .pill-gold{background:var(--gold);color:#1a1308;border:1px solid var(--gold);}
-  .pill-gold:hover{background:var(--gold-lt);}
+  .pill-gold{background:var(--gold);color:#fdf8ec;border:1px solid var(--gold-dk);}
+  .pill-gold:hover{background:var(--gold-dk);color:#fdf8ec;}
 
   /* hero */
-  .hero{position:relative;padding:118px 0 96px;text-align:center;}
-  .glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:760px;height:520px;background:radial-gradient(ellipse at center,rgba(200,146,59,.16),transparent 66%);pointer-events:none;z-index:0;}
-  .hero>*:not(.glow){position:relative;z-index:1;}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid var(--b2);border-radius:9999px;margin-bottom:30px;}
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);}
-  .slogan{font-family:var(--serif);font-weight:700;font-size:60px;line-height:1.18;letter-spacing:2px;color:var(--fg);}
-  .slogan .accent{color:var(--gold-lt);}
-  .subdesc{margin:26px auto 0;max-width:560px;font-size:17px;color:var(--fg2);line-height:1.7;}
+  .hero{position:relative;padding:112px 0 90px;text-align:center;overflow:hidden;}
+  .hero>.wrap{position:relative;z-index:2;}
+
+  /* 满江红 poem woven into background — vertical columns, right to left */
+  .poem-bg{position:absolute;inset:0;z-index:0;pointer-events:none;user-select:none;
+    display:flex;flex-direction:row-reverse;justify-content:center;align-items:flex-start;gap:clamp(18px,3.2vw,44px);
+    padding-top:64px;
+    font-family:"Zhi Mang Xing",var(--serif);color:#3d0808;
+  }
+  .poem-bg .pcol,.poem-bg .ptitle,.poem-bg .psub{writing-mode:vertical-rl;}
+  .poem-bg .pcol{font-size:clamp(17px,1.9vw,25px);line-height:2.1;letter-spacing:.42em;opacity:.14;white-space:nowrap;}
+  .poem-bg .ptitle{font-size:clamp(30px,3.4vw,46px);font-weight:400;letter-spacing:.5em;opacity:.22;}
+  .poem-bg .psub{font-size:clamp(15px,1.5vw,20px);letter-spacing:.5em;opacity:.18;margin-top:8px;}
+  .poem-bg .fade{position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 0%,transparent 42%,rgba(242,235,220,.72) 78%,var(--paper) 100%);}
+  .poem-bg .ptgroup{display:flex;flex-direction:row-reverse;gap:10px;}
+
+  /* enso ghost on the left, echoing the artwork */
+  .enso{position:absolute;left:-180px;top:-140px;width:640px;height:640px;z-index:1;opacity:.10;pointer-events:none;
+    border-radius:50%;
+    background:
+      radial-gradient(closest-side, transparent 62%, rgba(51,41,28,.9) 66%, rgba(51,41,28,.55) 74%, transparent 79%);
+    -webkit-mask-image:conic-gradient(from 210deg, black 0 265deg, transparent 285deg 360deg);
+            mask-image:conic-gradient(from 210deg, black 0 265deg, transparent 285deg 360deg);
+    filter:blur(1.5px);
+  }
+
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid var(--line2);border-radius:9999px;margin-bottom:30px;background:rgba(255,252,244,.5);}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  .slogan{font-family:"Zhi Mang Xing",var(--serif);font-weight:400;font-size:76px;line-height:1.22;letter-spacing:6px;color:var(--ink);}
+  .slogan .accent{color:var(--gold-dk);}
+  .subdesc{margin:26px auto 0;max-width:560px;font-size:17px;color:var(--ink2);line-height:1.7;}
   .subdesc .sep{color:var(--gold);margin:0 8px;}
 
   /* download badges */
   .dls{display:flex;gap:14px;justify-content:center;margin-top:40px;flex-wrap:wrap;}
-  .badge{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 22px;border-radius:13px;background:var(--bg2);border:1px solid var(--b2);cursor:pointer;transition:border-color .16s,background .16s,transform .06s;}
-  .badge:hover{border-color:var(--gold-bd);background:var(--bg3);}
+  .badge{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 22px;border-radius:13px;background:rgba(255,252,244,.6);border:1px solid var(--line2);cursor:pointer;transition:border-color .16s,background .16s,transform .06s;color:var(--ink);}
+  .badge:hover{border-color:var(--gold-bd);background:rgba(255,252,244,.9);color:var(--ink);}
   .badge:active{transform:scale(.98);}
   .badge svg{flex:none;}
   .badge .bt{text-align:left;line-height:1.15;display:flex;flex-direction:column;gap:3px;}
-  .badge .bt .s{font-size:11px;color:var(--fg3);}
-  .badge .bt .l{font-size:17px;font-weight:600;color:var(--fg);letter-spacing:.3px;}
-  .hint{margin-top:18px;font-size:13px;color:var(--fg3);}
+  .badge .bt .s{font-size:11px;color:var(--ink3);}
+  .badge .bt .l{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:.3px;}
+  .hint{margin-top:18px;font-size:13px;color:var(--ink3);}
 
-  /* phone mock */
-  .stage{margin:70px auto 0;width:284px;}
-  .phone{width:284px;height:580px;border-radius:42px;background:#000;padding:9px;border:1px solid var(--b3);box-shadow:0 40px 90px rgba(0,0,0,.5);}
-  .pscreen{width:100%;height:100%;border-radius:34px;overflow:hidden;background:linear-gradient(170deg,#1f1b15,#13110d);position:relative;display:flex;flex-direction:column;align-items:center;}
-  .pscreen .notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:88px;height:24px;background:#000;border-radius:13px;}
-  .pscreen .logo{width:88px;height:88px;border-radius:24px;background:#1A1714;display:grid;place-items:center;overflow:hidden;margin-top:120px;border:1px solid var(--gold-bd);}
-  .pscreen .logo img{width:82%;height:82%;object-fit:contain;}
-  .pscreen .pn{font-family:var(--serif);font-weight:700;font-size:23px;letter-spacing:4px;color:#F0E2C2;margin-top:24px;}
-  .pscreen .pen{font-family:var(--mono);font-size:11px;letter-spacing:4px;color:rgba(240,226,194,.5);margin-top:9px;}
-  .pscreen .ps{font-family:var(--serif);font-size:12.5px;color:rgba(240,226,194,.6);margin-top:26px;text-align:center;line-height:1.9;padding:0 30px;}
+  /* artwork stage — the full 禅圆 painting replaces the dark phone mock */
+  .stage{margin:72px auto 0;max-width:560px;position:relative;}
+  .stage img{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 60px rgba(74,54,36,.28));}
+  .stage .cap{margin-top:26px;font-family:var(--serif);font-size:14px;letter-spacing:.28em;color:var(--ink3);}
 
   /* features */
-  .feat{padding:96px 0 30px;}
+  .feat{padding:96px 0 30px;position:relative;}
   .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-  .fcard{background:var(--bg2);border:1px solid var(--b2);border-radius:14px;padding:24px 20px;transition:border-color .16s;}
-  .fcard:hover{border-color:var(--b3);}
-  .fcard .fi{width:38px;height:38px;border-radius:10px;background:rgba(200,146,59,.12);color:var(--gold-lt);display:grid;place-items:center;margin-bottom:16px;}
-  .fcard h3{font-size:16px;font-weight:600;letter-spacing:-.16px;margin-bottom:7px;}
-  .fcard p{font-size:13.5px;color:var(--fg3);line-height:1.6;}
+  .fcard{background:rgba(255,252,244,.55);border:1px solid var(--line);border-radius:14px;padding:24px 20px;transition:border-color .16s,background .16s;}
+  .fcard:hover{border-color:var(--line2);background:rgba(255,252,244,.85);}
+  .fcard .fi{width:38px;height:38px;border-radius:10px;background:rgba(169,124,34,.12);color:var(--gold-dk);display:grid;place-items:center;margin-bottom:16px;}
+  .fcard h3{font-size:16px;font-weight:600;letter-spacing:-.16px;margin-bottom:7px;color:var(--ink);}
+  .fcard p{font-size:13.5px;color:var(--ink2);line-height:1.6;}
 
   /* footer */
-  footer{margin-top:96px;border-top:1px solid var(--b1);padding:40px 0 48px;}
-  footer .wrap{max-width:1280px;}
+  footer{margin-top:96px;border-top:1px solid var(--line);padding:40px 0 48px;}
+  footer .wrap{max-width:1440px;}
   .foot-in{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
   .foot-links{margin-left:auto;display:flex;gap:24px;}
-  .foot-links a{font-size:13px;color:var(--fg3);transition:color .15s;}
-  .foot-links a:hover{color:var(--fg2);}
-  .copy{font-size:13px;color:var(--fg3);}
+  .foot-links a{font-size:13px;color:var(--ink3);transition:color .15s;}
+  .foot-links a:hover{color:var(--ink2);}
+  .copy{font-size:13px;color:var(--ink3);}
 
   @media(max-width:600px){
-    .slogan{font-size:34px;letter-spacing:1px;}
+    .slogan{font-size:44px;letter-spacing:3px;}
     .slogan .sp{display:block;}
     .slogan .cm{display:none;}
     .slogan br{display:none;}
-    .hero{padding:72px 0 64px;}
+    .hero{padding:66px 0 60px;}
     .subdesc{font-size:15px;}
     .nav-link{display:none;}
     .feat-grid{grid-template-columns:1fr 1fr;}
@@ -105,14 +134,18 @@
     .badge{width:240px;}
     .foot-in{flex-direction:column;align-items:center;gap:16px;text-align:center;}
     .foot-links{margin-left:0;}
+    .poem-bg{gap:12px;padding-top:40px;}
+    .poem-bg .pcol{font-size:12px;letter-spacing:.3em;}
+    .poem-bg .ptitle{font-size:20px;}
+    .enso{width:420px;height:420px;left:-150px;top:-110px;}
   }
 </style>
 </head>
 <body>
   <nav><div class="wrap nav-in">
     <div class="brand">
-      <span class="logo"><img src="assets/logo-gold.png" alt="缠习录"/></span>
-      <span><div class="nm">缠习录</div><div class="en">Chanxilu</div></span>
+      <span class="logo"><img id="navlogo" src="assets/logo-sepia.png" alt="缠习录"/></span>
+      <span><div class="nm">缠习录</div></span>
     </div>
     <div class="nav-cta">
       <a class="nav-link" href="#features">功能</a>
@@ -122,31 +155,41 @@
   </div></nav>
 
   <header class="hero">
-    <div class="glow"></div>
+    <div class="enso"></div>
+    <div class="poem-bg" aria-hidden="true">
+      <div class="ptgroup">
+        <div class="ptitle">满江红</div>
+        <div class="psub">缠中说禅</div>
+      </div>
+      <div class="pcol">万古长空，今犹昔，一朝风月。</div>
+      <div class="pcol">何处住？春花夏雨，秋鸿冬雪。</div>
+      <div class="pcol">百代浮华皆作土，千江吸尽无堪说。</div>
+      <div class="pcol">问世间，多少梦消磨、英雄血。</div>
+      <div class="pcol">星旋轨，天补裂，山崩柱，河倾缺。</div>
+      <div class="pcol">捣神宫鬼府，凤巢龙穴。</div>
+      <div class="pcol">怒剑穿云惊浩宇，狂涛卷日横孤筏。</div>
+      <div class="pcol">纵生死，劫火洗乾坤，齐欢悦。</div>
+      <div class="fade"></div>
+    </div>
     <div class="wrap">
       <div class="eyebrow"><span class="dot"></span><span class="mono">缠中说禅 · 学习 App</span></div>
-      <h1 class="slogan"><span class="sp">学而时习之</span><span class="cm">，</span><span class="sp">习而传录之</span><br/><span class="sp">为往圣继绝学</span></h1>
-      <p class="subdesc">缠师全集<span class="sep">·</span>精心排版<span class="sep">·</span>可读可听</p>
+      <h1 class="slogan"><span class="sp">学而时习之</span><span class="cm">，</span><span class="sp">习而传录之</span><br/><span class="sp">为往圣<span class="accent">继绝学</span></span></h1>
+      <p class="subdesc">缠师原文<span class="sep">·</span>精心排版<span class="sep">·</span>可读可听</p>
       <div class="dls" id="download">
         <a class="badge" href="#">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="#fafafa"><path d="M16 13c0-2.2 1.8-3.2 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8s-1.7-.8-2.8-.8c-1.5 0-2.8.8-3.6 2.1-1.5 2.7-.4 6.6 1.1 8.8.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7 1.9-1 2.6-2c.8-1.2 1.2-2.3 1.2-2.4-.1 0-2.2-.9-2.2-3.5ZM14 6.3c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 2-.5 2.5-1.2Z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#33291c"><path d="M16 13c0-2.2 1.8-3.2 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8s-1.7-.8-2.8-.8c-1.5 0-2.8.8-3.6 2.1-1.5 2.7-.4 6.6 1.1 8.8.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7 1.9-1 2.6-2c.8-1.2 1.2-2.3 1.2-2.4-.1 0-2.2-.9-2.2-3.5ZM14 6.3c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 2-.5 2.5-1.2Z"/></svg>
           <span class="bt"><span class="s">下载于</span><span class="l">App Store</span></span>
         </a>
         <a class="badge" href="#">
-          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 3.5 13.5 12 4 20.5c-.3-.2-.5-.6-.5-1V4.5c0-.4.2-.8.5-1Z" fill="#E3B05A"/><path d="M16.5 9 13.5 12l3 3 3.2-1.8c.5-.3.5-1.1 0-1.4L16.5 9Z" fill="#fafafa"/><path d="M4 3.5c.3-.2.7-.2 1.1 0L16.5 9l-3 3L4 3.5Z" fill="#b4b4b4"/><path d="M13.5 12l3 3L5.1 20.5c-.4.2-.8.2-1.1 0L13.5 12Z" fill="#898989"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 3.5 13.5 12 4 20.5c-.3-.2-.5-.6-.5-1V4.5c0-.4.2-.8.5-1Z" fill="#a97c22"/><path d="M16.5 9 13.5 12l3 3 3.2-1.8c.5-.3.5-1.1 0-1.4L16.5 9Z" fill="#33291c"/><path d="M4 3.5c.3-.2.7-.2 1.1 0L16.5 9l-3 3L4 3.5Z" fill="#5d4e39"/><path d="M13.5 12l3 3L5.1 20.5c-.4.2-.8.2-1.1 0L13.5 12Z" fill="#8a795e"/></svg>
           <span class="bt"><span class="s">前往</span><span class="l">Google Play</span></span>
         </a>
       </div>
       <p class="hint">原文永久免费 · 会员解锁听书 / 离线 / 跨端同步</p>
 
       <div class="stage">
-        <div class="phone"><div class="pscreen">
-          <div class="notch"></div>
-          <div class="logo"><img src="assets/logo-gold.png" alt=""/></div>
-          <div class="pn">缠习录</div>
-          <div class="pen">CHANXILU</div>
-          <div class="ps">学而时习之，习而传录之，<br/>为往圣继绝学。</div>
-        </div></div>
+        <img src="assets/czsc-main.webp" alt="缠中说禅 · 禅圆主视觉 · 满江红"/>
+        <div class="cap">万古长空 · 一朝风月</div>
       </div>
     </div>
   </header>
@@ -154,9 +197,9 @@
   <section class="feat" id="features"><div class="wrap">
     <div class="mono" style="text-align:center;margin-bottom:14px;">为什么选择缠习录</div>
     <div class="feat-grid">
-      <div class="fcard"><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h10a2 2 0 0 1 2 2V20l-3.5-2-3.5 2V6.5a2 2 0 0 0-2-2H5Z"/><path d="M5 4.5V18a2 2 0 0 0 2 2h3"/></svg></div><h3>原文免费 · 精心排版</h3><p>缠师全集完整收录，原文永久免费；为中文阅读打磨的版式，多主题久读不累。</p></div>
+      <div class="fcard"><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h10a2 2 0 0 1 2 2V20l-3.5-2-3.5 2V6.5a2 2 0 0 0-2-2H5Z"/><path d="M5 4.5V18a2 2 0 0 0 2 2h3"/></svg></div><h3>原文免费 · 精心排版</h3><p>缠师原文完整收录，永久免费；为中文阅读打磨的版式，多主题久读不累。</p></div>
       <div class="fcard"><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v15a1 1 0 0 0 1 1h15"/><path d="M7.5 14.5l3.5-4 3 2.5 4.5-6"/></svg></div><h3>丰富行情图表</h3><p>108 课配套 live K 线（非截图），可缩放切周期，内置缠论指标。</p></div>
-      <div class="fcard"><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><path d="M4 14a2.5 2.5 0 0 1 5 0v3a2.5 2.5 0 0 1-5 0Z"/><path d="M20 14a2.5 2.5 0 0 0-5 0v3a2.5 2.5 0 0 0 5 0Z"/></svg></div><h3>在线听书</h3><p>全集 AI 朗读，多音字精校，通勤路上也能学缠。</p></div>
+      <div class="fcard"><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><path d="M4 14a2.5 2.5 0 0 1 5 0v3a2.5 2.5 0 0 1-5 0Z"/><path d="M20 14a2.5 2.5 0 0 0-5 0v3a2.5 2.5 0 0 0 5 0Z"/></svg></div><h3>在线听书</h3><p>原文 AI 朗读，多音字精校，通勤路上也能学缠。</p></div>
       <div class="fcard"><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/><path d="M8.5 10h7M8.5 12.8h4"/></svg></div><h3>评论交流</h3><p>与同好讨论心得，重读原文与原文回复，共参缠中说禅。</p></div>
       <div class="fcard"><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7.5 11 4.5 4 4.5-4"/><path d="M5 19h14"/></svg></div><h3>离线下载</h3><p>原文与音频离线缓存，无网络也能随时翻阅。</p></div>
       <div class="fcard"><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-13.6-4.6L4 8.5M4 4v4.5h4.5M4 13a8 8 0 0 0 13.6 4.6L20 15.5M20 20v-4.5h-4.5"/></svg></div><h3>跨端同步</h3><p>笔记、书签、阅读进度云端同步，多设备无缝续读。</p></div>
@@ -171,5 +214,6 @@
       <a href="mailto:hi@chanxilu.com">联系我们</a>
     </div>
   </div></footer>
+
 </body>
 </html>
