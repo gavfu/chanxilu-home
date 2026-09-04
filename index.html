@@ -11,10 +11,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@500;600;700;900&family=Source+Code+Pro:wght@400;500&family=Zhi+Mang+Xing&family=Liu+Jian+Mao+Cao&display=swap"/>
 <style>
   :root{
-    --paper:#f2ebdc; --paper2:#ece3cf; --paper3:#e4d8bf;
-    --ink:#33291c; --ink2:#5d4e39; --ink3:#8a795e;
-    --line:rgba(74,54,36,.16); --line2:rgba(74,54,36,.26);
-    --gold:#a97c22; --gold-dk:#8a6318; --gold-bd:rgba(169,124,34,.38);
+    --paper:#FAFAFA;
+    --ink:#1F1F1F; --ink2:#5C5C5C; --ink3:#717171;
+    --line:rgba(0,0,0,.07); --line2:rgba(0,0,0,.10); --line3:rgba(0,0,0,.16);
+    --brand:#E31837; --brand-hov:#CC1531; --brand-press:#B8122C;
+    --brand-ink:#A81028;
     --sans:"Inter","PingFang SC","Noto Sans SC",system-ui,sans-serif;
     --serif:"Noto Serif SC","Songti SC",serif;
     --mono:"Source Code Pro",ui-monospace,Menlo,monospace;
@@ -22,20 +23,20 @@
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:
-      radial-gradient(1200px 700px at 50% -160px, rgba(255,252,244,.75), transparent 62%),
-      radial-gradient(900px 900px at 108% 88%, rgba(196,175,136,.28), transparent 60%),
-      radial-gradient(1000px 800px at -10% 100%, rgba(196,175,136,.22), transparent 58%),
-      var(--paper);
+    background:var(--paper);
     color:var(--ink);font-family:var(--sans);font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;
   }
-  a{color:var(--gold-dk);text-decoration:none;}
-  a:hover{color:var(--gold);}
+  /* 链接 = 品牌红 + 下划线。红：官网链接总数个位数，红读作品牌而不是噪声（规格 §1.1
+     裁决：ops 密集表格禁红走 info、官网走 accent-ink）。下划线：不让「是不是链接」
+     只靠颜色承载（WCAG 1.4.1），也与四个法务页一致。 */
+  a{color:var(--brand-ink);text-decoration:underline;text-underline-offset:2px;}
+  a:hover{color:var(--brand);}
+  a:hover{text-decoration:underline;}
   .mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:1.2px;font-size:12px;color:var(--ink3);}
   .wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
 
   /* nav */
-  nav{position:sticky;top:0;z-index:50;background:rgba(242,235,220,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
   .nav-in{height:62px;display:flex;align-items:center;gap:12px;}
   nav .wrap{max-width:1440px;}
   .brand{display:flex;align-items:center;gap:11px;}
@@ -49,8 +50,8 @@
   .nav-link:hover{color:var(--ink);}
   .pill{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 22px;border-radius:9999px;font-size:14px;font-weight:500;cursor:pointer;transition:background .16s,border-color .16s,transform .06s;}
   .pill:active{transform:scale(.97);}
-  .pill-gold{background:var(--gold);color:#fdf8ec;border:1px solid var(--gold-dk);}
-  .pill-gold:hover{background:var(--gold-dk);color:#fdf8ec;}
+  .pill-brand{background:var(--brand);color:#fff;border:1px solid var(--brand-press);}
+  .pill-brand:hover{background:var(--brand-hov);color:#fff;}
 
   /* hero */
   .hero{position:relative;padding:112px 0 90px;text-align:center;overflow:hidden;}
@@ -60,55 +61,59 @@
   .poem-bg{position:absolute;inset:0;z-index:0;pointer-events:none;user-select:none;
     display:flex;flex-direction:row-reverse;justify-content:center;align-items:flex-start;gap:clamp(18px,3.2vw,44px);
     padding-top:64px;
-    font-family:"Zhi Mang Xing",var(--serif);color:#3d0808;
+    font-family:"Zhi Mang Xing",var(--serif);color:var(--ink);
   }
   .poem-bg .pcol,.poem-bg .ptitle,.poem-bg .psub{writing-mode:vertical-rl;}
-  .poem-bg .pcol{font-size:clamp(17px,1.9vw,25px);line-height:2.1;letter-spacing:.42em;opacity:.14;white-space:nowrap;}
-  .poem-bg .ptitle{font-size:clamp(30px,3.4vw,46px);font-weight:400;letter-spacing:.5em;opacity:.22;}
-  .poem-bg .psub{font-size:clamp(15px,1.5vw,20px);letter-spacing:.5em;opacity:.18;margin-top:8px;}
+  .poem-bg .pcol{font-size:clamp(17px,1.9vw,25px);line-height:2.1;letter-spacing:.42em;opacity:.05;white-space:nowrap;}
+  .poem-bg .ptitle{font-size:clamp(30px,3.4vw,46px);font-weight:400;letter-spacing:.5em;opacity:.07;}
+  .poem-bg .psub{font-size:clamp(15px,1.5vw,20px);letter-spacing:.5em;opacity:.06;margin-top:8px;}
   .poem-bg .fade{position:absolute;inset:0;
-    background:linear-gradient(180deg,transparent 0%,transparent 42%,rgba(242,235,220,.72) 78%,var(--paper) 100%);}
+    background:linear-gradient(180deg,transparent 0%,transparent 42%,rgba(250,250,250,.72) 78%,var(--paper) 100%);}
   .poem-bg .ptgroup{display:flex;flex-direction:row-reverse;gap:10px;}
 
   /* enso ghost on the left, echoing the artwork */
   .enso{position:absolute;left:-180px;top:-140px;width:640px;height:640px;z-index:1;opacity:.10;pointer-events:none;
     border-radius:50%;
     background:
-      radial-gradient(closest-side, transparent 62%, rgba(51,41,28,.9) 66%, rgba(51,41,28,.55) 74%, transparent 79%);
+      radial-gradient(closest-side, transparent 62%, rgba(31,31,31,.9) 66%, rgba(31,31,31,.55) 74%, transparent 79%);
     -webkit-mask-image:conic-gradient(from 210deg, black 0 265deg, transparent 285deg 360deg);
             mask-image:conic-gradient(from 210deg, black 0 265deg, transparent 285deg 360deg);
     filter:blur(1.5px);
   }
 
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid var(--line2);border-radius:9999px;margin-bottom:30px;background:rgba(255,252,244,.5);}
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid var(--line2);border-radius:9999px;margin-bottom:30px;background:rgba(255,255,255,.5);}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--brand);}
+  .eyebrow .mono{color:var(--ink2);}
   .slogan{font-family:"Zhi Mang Xing",var(--serif);font-weight:400;font-size:76px;line-height:1.22;letter-spacing:6px;color:var(--ink);}
-  .slogan .accent{color:var(--gold-dk);}
+  .slogan .accent{color:var(--brand-ink);}
   .subdesc{margin:26px auto 0;max-width:560px;font-size:17px;color:var(--ink2);line-height:1.7;}
-  .subdesc .sep{color:var(--gold);margin:0 8px;}
+  .subdesc .sep{color:var(--ink2);margin:0 8px;}
 
   /* download badges */
   .dls{display:flex;gap:14px;justify-content:center;margin-top:40px;flex-wrap:wrap;}
-  .badge{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 22px;border-radius:13px;background:rgba(255,252,244,.6);border:1px solid var(--line2);cursor:pointer;transition:border-color .16s,background .16s,transform .06s;color:var(--ink);}
-  .badge:hover{border-color:var(--gold-bd);background:rgba(255,252,244,.9);color:var(--ink);}
+  /* .badge is an interactive control (real <a> store links) — WCAG 1.4.11 needs
+     its border at 3:1, so it gets its own border color instead of --line2/-line3
+     (those stay decorative-only, per §1.5: the ops hairline waiver doesn't apply here). */
+  .badge{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 22px;border-radius:13px;background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.42);cursor:pointer;transition:border-color .16s,background .16s,transform .06s;color:var(--ink);}
+  .badge:hover{border-color:rgba(0,0,0,.55);background:rgba(255,255,255,.9);color:var(--ink);}
   .badge:active{transform:scale(.98);}
   .badge svg{flex:none;}
   .badge .bt{text-align:left;line-height:1.15;display:flex;flex-direction:column;gap:3px;}
   .badge .bt .s{font-size:11px;color:var(--ink3);}
   .badge .bt .l{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:.3px;}
-  .hint{margin-top:18px;font-size:13px;color:var(--ink3);}
+  .hint{margin-top:18px;font-size:13px;color:var(--ink2);}
 
   /* artwork stage — the full 禅圆 painting replaces the dark phone mock */
   .stage{margin:72px auto 0;max-width:560px;position:relative;}
-  .stage img{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 60px rgba(74,54,36,.28));}
-  .stage .cap{margin-top:26px;font-family:var(--serif);font-size:14px;letter-spacing:.28em;color:var(--ink3);}
+  .stage img{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 60px rgba(0,0,0,.28));}
+  .stage .cap{margin-top:26px;font-family:var(--serif);font-size:14px;letter-spacing:.28em;color:var(--ink2);}
 
   /* features */
   .feat{padding:96px 0 30px;position:relative;}
   .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-  .fcard{background:rgba(255,252,244,.55);border:1px solid var(--line);border-radius:14px;padding:24px 20px;transition:border-color .16s,background .16s;}
-  .fcard:hover{border-color:var(--line2);background:rgba(255,252,244,.85);}
-  .fcard .fi{width:38px;height:38px;border-radius:10px;background:rgba(169,124,34,.12);color:var(--gold-dk);display:grid;place-items:center;margin-bottom:16px;}
+  .fcard{background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:14px;padding:24px 20px;transition:border-color .16s,background .16s;}
+  .fcard:hover{border-color:var(--line2);background:rgba(255,255,255,.85);}
+  .fcard .fi{width:38px;height:38px;border-radius:10px;background:rgba(0,0,0,.06);color:var(--ink2);display:grid;place-items:center;margin-bottom:16px;}
   .fcard h3{font-size:16px;font-weight:600;letter-spacing:-.16px;margin-bottom:7px;color:var(--ink);}
   .fcard p{font-size:13.5px;color:var(--ink2);line-height:1.6;}
 
@@ -144,13 +149,13 @@
 <body>
   <nav><div class="wrap nav-in">
     <div class="brand">
-      <span class="logo"><img id="navlogo" src="assets/logo-sepia.png" alt="缠习录"/></span>
+      <span class="logo"><img id="navlogo" src="assets/logo-seal.png" alt="缠习录"/></span>
       <span><div class="nm">缠习录</div></span>
     </div>
     <div class="nav-cta">
       <a class="nav-link" href="#features">功能</a>
       <a class="nav-link" href="#download">关于</a>
-      <a class="pill pill-gold" href="#download">下载 App</a>
+      <a class="pill pill-brand" href="#download">下载 App</a>
     </div>
   </div></nav>
 
@@ -177,11 +182,13 @@
       <p class="subdesc">缠师原文<span class="sep">·</span>精心排版<span class="sep">·</span>可读可听</p>
       <div class="dls" id="download">
         <a class="badge" href="#">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="#33291c"><path d="M16 13c0-2.2 1.8-3.2 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8s-1.7-.8-2.8-.8c-1.5 0-2.8.8-3.6 2.1-1.5 2.7-.4 6.6 1.1 8.8.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7 1.9-1 2.6-2c.8-1.2 1.2-2.3 1.2-2.4-.1 0-2.2-.9-2.2-3.5ZM14 6.3c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 2-.5 2.5-1.2Z"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M16 13c0-2.2 1.8-3.2 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8s-1.7-.8-2.8-.8c-1.5 0-2.8.8-3.6 2.1-1.5 2.7-.4 6.6 1.1 8.8.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7 1.9-1 2.6-2c.8-1.2 1.2-2.3 1.2-2.4-.1 0-2.2-.9-2.2-3.5ZM14 6.3c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 2-.5 2.5-1.2Z"/></svg>
           <span class="bt"><span class="s">下载于</span><span class="l">App Store</span></span>
         </a>
         <a class="badge" href="#">
-          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 3.5 13.5 12 4 20.5c-.3-.2-.5-.6-.5-1V4.5c0-.4.2-.8.5-1Z" fill="#a97c22"/><path d="M16.5 9 13.5 12l3 3 3.2-1.8c.5-.3.5-1.1 0-1.4L16.5 9Z" fill="#33291c"/><path d="M4 3.5c.3-.2.7-.2 1.1 0L16.5 9l-3 3L4 3.5Z" fill="#5d4e39"/><path d="M13.5 12l3 3L5.1 20.5c-.4.2-.8.2-1.1 0L13.5 12Z" fill="#8a795e"/></svg>
+          <!-- 官方 Google Play 三角四色标——第三方商标合规用色，不占本站「红预算」，
+               豁免于 §1.1 红预算清单（含 #FF3333 那一档），2026-09-03 裁定。 -->
+          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 3.5 13.5 12 4 20.5c-.3-.2-.5-.6-.5-1V4.5c0-.4.2-.8.5-1Z" fill="#3BCCFF"/><path d="M16.5 9 13.5 12l3 3 3.2-1.8c.5-.3.5-1.1 0-1.4L16.5 9Z" fill="#48FF48"/><path d="M4 3.5c.3-.2.7-.2 1.1 0L16.5 9l-3 3L4 3.5Z" fill="#FFD400"/><path d="M13.5 12l3 3L5.1 20.5c-.4.2-.8.2-1.1 0L13.5 12Z" fill="#FF3333"/></svg>
           <span class="bt"><span class="s">前往</span><span class="l">Google Play</span></span>
         </a>
       </div>
