@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>缠习录 Chanxilu · 缠中说禅学习</title>
-<meta name="description" content="缠中说禅博客原文的免费阅读 App：精心排版、留言线程化、离线阅读、进度同步。"/>
+<meta name="description" content="缠习录：缠中说禅博客原文的免费阅读 App——精心排版、留言线程化、离线阅读、进度同步；会员另有阅读无广告、历史行情图与听书。由 chzhshch.blog 站长打造。"/>
 <link rel="icon" href="assets/favicon.ico" sizes="any"/>
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"/>
 <link rel="apple-touch-icon" href="assets/favicon-180.png"/>
@@ -16,6 +16,8 @@
     --line:rgba(0,0,0,.07); --line2:rgba(0,0,0,.10); --line3:rgba(0,0,0,.16);
     --brand:#E31837; --brand-hov:#CC1531; --brand-press:#B8122C;
     --brand-ink:#A81028;
+    /* 泥金只表示「会员」（web-palette §1.3）：只做描边与图形，不做白底上的小字（3.75 不过 AA）。 */
+    --cx-member:#A97C22; --cx-member-soft:#F6F2E9;
     --sans:"Inter","PingFang SC","Noto Sans SC",system-ui,sans-serif;
     --serif:"Noto Serif SC","Songti SC",serif;
     --mono:"Source Code Pro",ui-monospace,Menlo,monospace;
@@ -84,6 +86,8 @@
   .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid var(--line2);border-radius:9999px;margin-bottom:30px;background:rgba(255,255,255,.5);}
   .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--brand);}
   .eyebrow .mono{color:var(--ink2);}
+  /* 域名保持小写（.mono 默认转大写）；手机上分两行。 */
+  .eyebrow .mono a{text-transform:none;letter-spacing:.4px;}
   .slogan{font-family:"Zhi Mang Xing",var(--serif);font-weight:400;font-size:76px;line-height:1.22;letter-spacing:6px;color:var(--ink);}
   .slogan .accent{color:var(--brand-ink);}
   .subdesc{margin:26px auto 0;max-width:560px;font-size:17px;color:var(--ink2);line-height:1.7;}
@@ -95,6 +99,7 @@
      its border at 3:1, so it gets its own border color instead of --line2/-line3
      (those stay decorative-only, per §1.5: the ops hairline waiver doesn't apply here). */
   .badge{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 22px;border-radius:13px;background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.42);cursor:pointer;transition:border-color .16s,background .16s,transform .06s;color:var(--ink);}
+  .badge,.badge:hover{text-decoration:none;}
   .badge:hover{border-color:rgba(0,0,0,.55);background:rgba(255,255,255,.9);color:var(--ink);}
   .badge:active{transform:scale(.98);}
   /* 上架前的占位态：不是链接，只降低透明度，不引入新颜色（§1 无新色值） */
@@ -112,13 +117,23 @@
   /* features */
   .feat{padding:96px 0 30px;position:relative;}
   .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-  .roadmap{text-align:center;margin-top:34px;}
-  .roadmap p{margin-top:8px;font-size:13px;color:var(--ink3);}
   .fcard{background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:14px;padding:24px 20px;transition:border-color .16s,background .16s;}
   .fcard:hover{border-color:var(--line2);background:rgba(255,255,255,.85);}
   .fcard .fi{width:38px;height:38px;border-radius:10px;background:rgba(0,0,0,.06);color:var(--ink2);display:grid;place-items:center;margin-bottom:16px;}
   .fcard h3{font-size:16px;font-weight:600;letter-spacing:-.16px;margin-bottom:7px;color:var(--ink);}
   .fcard p{font-size:13.5px;color:var(--ink2);line-height:1.6;}
+
+  /* member — 可选的三样工具。泥金只出现在「会员」描边徽标与图形上（会员语义），不新增红。 */
+  .member{padding:72px 0 10px;position:relative;}
+  .mhead{font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:.06em;text-align:center;color:var(--ink);}
+  .mlead{margin:14px auto 30px;max-width:720px;text-align:center;font-size:15px;color:var(--ink2);line-height:1.75;text-wrap:balance;}
+  .m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .mcard{position:relative;}
+  .mchip{position:absolute;top:18px;right:16px;display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:9999px;border:1px solid var(--cx-member);background:var(--cx-member-soft);font-size:11.5px;font-weight:500;color:var(--ink);letter-spacing:.5px;}
+  .mchip svg{color:var(--cx-member);flex:none;}
+  .mprice{margin-top:26px;text-align:center;}
+  .mprice p{font-size:13.5px;color:var(--ink2);line-height:1.7;}
+  .mnote{margin-top:14px;text-align:center;font-size:12.5px;color:var(--ink3);line-height:1.7;}
 
   /* footer */
   footer{margin-top:96px;border-top:1px solid var(--line);padding:40px 0 48px;}
@@ -138,6 +153,12 @@
     .subdesc{font-size:15px;}
     .nav-link{display:none;}
     .feat-grid{grid-template-columns:1fr 1fr;}
+    .m-grid{grid-template-columns:1fr;}
+    .mhead{font-size:21px;}
+    .eyebrow{border-radius:16px;padding:8px 16px;align-items:flex-start;}
+    .eyebrow .dot{margin-top:7px;}
+    .eyebrow .mono{display:flex;flex-direction:column;gap:3px;text-align:left;}
+    .eyebrow .eb-sep{display:none;}
     .dls{flex-direction:column;align-items:center;}
     .badge{width:240px;}
     .foot-in{flex-direction:column;align-items:center;gap:16px;text-align:center;}
@@ -157,7 +178,7 @@
     </div>
     <div class="nav-cta">
       <a class="nav-link" href="#features">功能</a>
-      <a class="nav-link" href="#download">关于</a>
+      <a class="nav-link" href="#member">会员</a>
       <a class="pill pill-brand" href="#download">下载 App</a>
     </div>
   </div></nav>
@@ -180,19 +201,19 @@
       <div class="fade"></div>
     </div>
     <div class="wrap">
-      <div class="eyebrow"><span class="dot"></span><span class="mono">缠中说禅 · 学习 App</span></div>
+      <div class="eyebrow"><span class="dot"></span><span class="mono"><span class="eb-by">由 <a href="https://chzhshch.blog" target="_blank" rel="noopener">chzhshch.blog</a> 站长倾力打造</span><span class="eb-sep"> · </span><span class="eb-goal">做世界上最好的缠论学习软件</span></span></div>
       <h1 class="slogan"><span class="sp">学而时习之</span><span class="cm">，</span><span class="sp">习而传录之</span><br/><span class="sp">为往圣<span class="accent">继绝学</span></span></h1>
       <p class="subdesc">缠师原文<span class="sep">·</span>精心排版<span class="sep">·</span>免费阅读</p>
       <div class="dls" id="download">
         <a class="badge" href="https://apps.apple.com/app/id6809664630" target="_blank" rel="noopener">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M16 13c0-2.2 1.8-3.2 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8s-1.7-.8-2.8-.8c-1.5 0-2.8.8-3.6 2.1-1.5 2.7-.4 6.6 1.1 8.8.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7 1.9-1 2.6-2c.8-1.2 1.2-2.3 1.2-2.4-.1 0-2.2-.9-2.2-3.5ZM14 6.3c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 2-.5 2.5-1.2Z"/></svg>
-          <span class="bt"><span class="s">App Store</span><span class="l">下载于</span></span>
+          <span class="bt"><span class="s">iPhone · iPad</span><span class="l">App Store 下载</span></span>
         </a>
         <a class="badge" href="https://play.google.com/store/apps/details?id=com.chanxilu.chanxilu" target="_blank" rel="noopener">
           <!-- 官方 Google Play 三角四色标——第三方商标合规用色，不占本站「红预算」，
                豁免于 §1.1 红预算清单（含 #FF3333 那一档），2026-09-03 裁定。 -->
           <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 3.5 13.5 12 4 20.5c-.3-.2-.5-.6-.5-1V4.5c0-.4.2-.8.5-1Z" fill="#3BCCFF"/><path d="M16.5 9 13.5 12l3 3 3.2-1.8c.5-.3.5-1.1 0-1.4L16.5 9Z" fill="#48FF48"/><path d="M4 3.5c.3-.2.7-.2 1.1 0L16.5 9l-3 3L4 3.5Z" fill="#FFD400"/><path d="M13.5 12l3 3L5.1 20.5c-.4.2-.8.2-1.1 0L13.5 12Z" fill="#FF3333"/></svg>
-          <span class="bt"><span class="s">Google Play</span><span class="l">下载于</span></span>
+          <span class="bt"><span class="s">Android</span><span class="l">Google Play 下载</span></span>
         </a>
       </div>
       <p class="hint">原文永久免费 · 不登录也能读</p>
@@ -212,10 +233,21 @@
       <div class="fcard"><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7.5 11 4.5 4 4.5-4"/><path d="M5 19h14"/></svg></div><h3>离线阅读</h3><p>打开过的合集与文章自动缓存，没有网络也能随时翻阅。</p></div>
       <div class="fcard"><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-13.6-4.6L4 8.5M4 4v4.5h4.5M4 13a8 8 0 0 0 13.6 4.6L20 15.5M20 20v-4.5h-4.5"/></svg></div><h3>阅读进度同步</h3><p>登录后阅读进度与阅读历史跨设备同步；不登录也可阅读全部原文。</p></div>
     </div>
-    <div class="roadmap">
-      <div class="mono">路线图 · 陆续推出</div>
-      <p>听书 · 108 课历史行情图 · 会员功能（原文始终免费）</p>
+  </div></section>
+
+  <section class="member" id="member"><div class="wrap">
+    <div class="mono" style="text-align:center;margin-bottom:14px;">会员 · 可选</div>
+    <h2 class="mhead">原文永久免费，会员多三样学习工具</h2>
+    <p class="mlead">缠师的原文与回复永久免费，用来学缠已经足够。会员费用于维持网站与 App 的持续运转和迭代。</p>
+    <div class="m-grid">
+      <div class="fcard mcard"><span class="mchip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l3.5 2.5L12 5l4.5 5.5L20 8l-1.5 9h-13L4 8Z"/></svg>会员</span><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8.5 9h7M8.5 12.5h7M8.5 16h4"/></svg></div><h3>阅读无广告</h3><p>会员阅读时不展示广告，专注原文。</p></div>
+      <div class="fcard mcard"><span class="mchip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l3.5 2.5L12 5l4.5 5.5L20 8l-1.5 9h-13L4 8Z"/></svg>会员</span><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v4M7 16v4M17 4v3M17 15v5"/><rect x="5" y="8" width="4" height="8" rx="1"/><rect x="15" y="7" width="4" height="8" rx="1"/></svg></div><h3>历史行情图</h3><p>回到每课发表当天的上证指数与文中个股走势，带笔、线段、中枢标注。</p></div>
+      <div class="fcard mcard"><span class="mchip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l3.5 2.5L12 5l4.5 5.5L20 8l-1.5 9h-13L4 8Z"/></svg>会员</span><div class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="3.5" y="13.5" width="4" height="6" rx="1.5"/><rect x="16.5" y="13.5" width="4" height="6" rx="1.5"/></svg></div><h3>听书</h3><p>AI 朗读全部课文，四种音色可选，可后台播放。</p></div>
     </div>
+    <div class="mprice">
+      <p>在 App 内订阅，按月自动续期，可随时取消；价格以 App Store / Google Play 显示为准。<br/>合集前 5 篇可免费试听、试看行情图，不登录也可以。</p>
+    </div>
+    <p class="mnote">行情图上的结构为算法划分，非缠师原图；本应用只做阅读工具与历史资料整理，不构成投资建议。</p>
   </div></section>
 
   <footer><div class="wrap foot-in">
