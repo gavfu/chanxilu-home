@@ -46,6 +46,10 @@
   .brand .logo{width:38px;height:38px;display:grid;place-items:center;flex:none;}
   .brand .logo img{width:100%;height:100%;object-fit:contain;}
   .brand .nm{font-family:"Zhi Mang Xing",var(--serif);font-weight:400;font-size:30px;letter-spacing:2.5px;color:var(--ink);line-height:1;}
+  /* 这款行草的「缠」主笔向右上斜，「习」「录」的主竖是直的：只把「缠」顺时针转 4.5° 摆正，
+     与旁边印里那枚「缠」同一个角度（App 登录页的字样也是这样，2026-11-19）。字距改用 margin 给，
+     旋转中心才是字框的正中。 */
+  .brand .nm .chan{display:inline-block;transform:rotate(4.5deg);letter-spacing:0;margin-right:2.5px;}
   .brand .en{font-family:"Zhi Mang Xing",var(--serif);font-size:13px;letter-spacing:2.5px;color:var(--ink3);text-transform:uppercase;}
   .nav-cta{margin-left:auto;display:flex;align-items:center;gap:18px;}
   .nav-link{font-size:14px;font-weight:500;color:var(--ink2);transition:color .15s;}
@@ -174,7 +178,7 @@
   <nav><div class="wrap nav-in">
     <div class="brand">
       <span class="logo"><img id="navlogo" src="assets/logo-seal.png" alt="缠习录"/></span>
-      <span><div class="nm">缠习录</div></span>
+      <span><div class="nm"><span class="chan">缠</span>习录</div></span>
     </div>
     <div class="nav-cta">
       <a class="nav-link" href="#features">功能</a>
