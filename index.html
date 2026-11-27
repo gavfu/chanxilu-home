@@ -39,7 +39,7 @@
 
   /* nav */
   nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
-  .nav-in{height:62px;display:flex;align-items:center;gap:12px;}
+  .nav-in{height:62px;display:flex;align-items:center;gap:12px;white-space:nowrap;}
   nav .wrap{max-width:1440px;}
   .brand{display:flex;align-items:center;gap:11px;}
   .brand>span{display:flex;align-items:center;}
@@ -52,9 +52,9 @@
   .brand .nm .chan{display:inline-block;transform:rotate(4.5deg);letter-spacing:0;margin-right:2.5px;}
   .brand .en{font-family:"Zhi Mang Xing",var(--serif);font-size:13px;letter-spacing:2.5px;color:var(--ink3);text-transform:uppercase;}
   .nav-cta{margin-left:auto;display:flex;align-items:center;gap:18px;}
-  .nav-link{font-size:14px;font-weight:500;color:var(--ink2);transition:color .15s;}
+  .nav-link{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:500;color:var(--ink2);transition:color .15s;}
   .nav-link:hover{color:var(--ink);}
-  .pill{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 22px;border-radius:9999px;font-size:14px;font-weight:500;cursor:pointer;transition:background .16s,border-color .16s,transform .06s;}
+  .pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 22px;border-radius:9999px;font-size:14px;font-weight:500;cursor:pointer;transition:background .16s,border-color .16s,transform .06s;}
   .pill:active{transform:scale(.97);}
   .pill-brand{background:var(--brand);color:#fff;border:1px solid var(--brand-press);}
   .pill-brand:hover{background:var(--brand-hov);color:#fff;}
@@ -155,7 +155,11 @@
     .slogan br{display:none;}
     .hero{padding:66px 0 60px;}
     .subdesc{font-size:15px;}
-    .nav-link{display:none;}
+    .nav-in{padding-inline:12px;gap:8px;}
+    .nav-cta{gap:8px;}
+    .nav-link{min-width:44px;justify-content:center;}
+    .nav-link-secondary{display:none;}
+    .nav-cta .pill{padding-inline:12px;}
     .feat-grid{grid-template-columns:1fr 1fr;}
     .m-grid{grid-template-columns:1fr;}
     .mhead{font-size:21px;}
@@ -181,8 +185,9 @@
       <span><div class="nm"><span class="chan">缠</span>习录</div></span>
     </div>
     <div class="nav-cta">
-      <a class="nav-link" href="#features">功能</a>
-      <a class="nav-link" href="#member">会员</a>
+      <a class="nav-link nav-link-secondary" href="#features">功能</a>
+      <a class="nav-link nav-link-secondary" href="#member">会员</a>
+      <a class="nav-link" href="/support">支持</a>
       <a class="pill pill-brand" href="#download">下载 App</a>
     </div>
   </div></nav>
